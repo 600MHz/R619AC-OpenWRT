@@ -1,0 +1,567 @@
+diff --git a/package/firmware/ipq-wifi/Makefile b/package/firmware/ipq-wifi/Makefile
+index eb7c2df1aa..277cdf5929 100644
+--- a/package/firmware/ipq-wifi/Makefile
++++ b/package/firmware/ipq-wifi/Makefile
+@@ -33,6 +33,7 @@ ALLWIFIBOARDS:= \
+ 	engenius_ens620ext \
+ 	linksys_ea6350v3 \
+ 	linksys_ea8300 \
++	p2w_r619ac \
+ 	qxwlan_e2600ac
+ 
+ ALLWIFIPACKAGES:=$(foreach BOARD,$(ALLWIFIBOARDS),ipq-wifi-$(BOARD))
+@@ -105,6 +106,7 @@ $(eval $(call generate-ipq-wifi-package,engenius_eap1300,EnGenius EAP1300))
+ $(eval $(call generate-ipq-wifi-package,engenius_ens620ext,EnGenius ENS620EXT))
+ $(eval $(call generate-ipq-wifi-package,linksys_ea6350v3,Linksys EA6350v3))
+ $(eval $(call generate-ipq-wifi-package,linksys_ea8300,Linksys EA8300))
++$(eval $(call generate-ipq-wifi-package,p2w_r619ac,P&W R619AC))
+ $(eval $(call generate-ipq-wifi-package,qxwlan_e2600ac,Qxwlan E2600AC))
+ 
+ $(foreach PACKAGE,$(ALLWIFIPACKAGES),$(eval $(call BuildPackage,$(PACKAGE))))
+diff --git a/package/firmware/ipq-wifi/board-p2w_r619ac.bin b/package/firmware/ipq-wifi/board-p2w_r619ac.bin
+new file mode 100644
+index 0000000000000000000000000000000000000000..a1b1166f6f9dd713fd5d45bbf50767a03703e902
+GIT binary patch
+literal 24300
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/target/linux/ipq40xx/base-files/etc/board.d/02_network b/target/linux/ipq40xx/base-files/etc/board.d/02_network
+index 01825b8bac..e2ef08b50b 100755
+--- a/target/linux/ipq40xx/base-files/etc/board.d/02_network
++++ b/target/linux/ipq40xx/base-files/etc/board.d/02_network
+@@ -62,6 +62,12 @@ ipq40xx_setup_interfaces()
+ 		ucidef_add_switch "switch0" \
+ 			"0u@eth0" "3:lan" "4:lan" "0u@eth1" "5:wan"
+ 		;;
++	p2w,r619ac-128m |\
++	p2w,r619ac)
++		ucidef_set_interfaces_lan_wan "eth0" "eth1"
++		ucidef_add_switch "switch0" \
++			"0u@eth0" "1:lan" "2:lan" "3:lan" "4:lan" "0u@eth1" "5:wan"
++		;;
+ 	*)
+ 		echo "Unsupported hardware. Network interfaces not initialized"
+ 		;;
+@@ -86,6 +92,11 @@ ipq40xx_setup_macs()
+ 		wan_mac=$(mtd_get_mac_ascii devinfo hw_mac_addr)
+ 		lan_mac=$(macaddr_add "$wan_mac" 1)
+ 		;;
++	p2w,r619ac-128m|\
++	p2w,r619ac)
++		lan_mac=$(cat /sys/class/net/eth0/address)
++		wan_mac=$(macaddr_add "$lan_mac" 1)
++		;;
+ 	esac
+ 
+ 	[ -n "$lan_mac" ] && ucidef_set_interface_macaddr "lan" $lan_mac
+diff --git a/target/linux/ipq40xx/base-files/etc/hotplug.d/firmware/11-ath10k-caldata b/target/linux/ipq40xx/base-files/etc/hotplug.d/firmware/11-ath10k-caldata
+index b0035ce8a3..d23894a2ee 100644
+--- a/target/linux/ipq40xx/base-files/etc/hotplug.d/firmware/11-ath10k-caldata
++++ b/target/linux/ipq40xx/base-files/etc/hotplug.d/firmware/11-ath10k-caldata
+@@ -134,6 +134,8 @@ case "$FIRMWARE" in
+ 	alfa-network,ap120c-ac |\
+ 	glinet,gl-b1300 |\
+ 	linksys,ea6350v3 |\
++	p2w,r619ac-128m |\
++	p2w,r619ac |\
+ 	qcom,ap-dk01.1-c1)
+ 		ath10kcal_extract "ART" 4096 12064
+ 		;;
+@@ -196,6 +198,8 @@ case "$FIRMWARE" in
+ 	alfa-network,ap120c-ac |\
+ 	glinet,gl-b1300 |\
+ 	linksys,ea6350v3 |\
++	p2w,r619ac-128m |\
++	p2w,r619ac |\
+ 	qcom,ap-dk01.1-c1)
+ 		ath10kcal_extract "ART" 20480 12064
+ 		;;
+diff --git a/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh b/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
+index a7b7da1bf3..d9686e5303 100644
+--- a/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
++++ b/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
+@@ -51,6 +51,8 @@ platform_do_upgrade() {
+ 	avm,fritzbox-7530 |\
+ 	avm,fritzrepeater-1200 |\
+ 	avm,fritzrepeater-3000 |\
++	p2w,r619ac-128m |\
++	p2w,r619ac |\
+ 	qxwlan,e2600ac-c2)
+ 		nand_do_upgrade "$1"
+ 		;;
+diff --git a/target/linux/ipq40xx/files-4.14/arch/arm/boot/dts/qcom-ipq4019-p2w-r619ac-128m.dts b/target/linux/ipq40xx/files-4.14/arch/arm/boot/dts/qcom-ipq4019-p2w-r619ac-128m.dts
+new file mode 100644
+index 0000000000..b51378a7ed
+--- /dev/null
++++ b/target/linux/ipq40xx/files-4.14/arch/arm/boot/dts/qcom-ipq4019-p2w-r619ac-128m.dts
+@@ -0,0 +1,18 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++
++#include "qcom-ipq4019-r619ac.dtsi"
++
++/ {
++	model = "P&W R619AC 128M";
++	compatible = "p2w,r619ac-128m";
++
++	chosen {
++		bootargs-append = " root=/dev/ubiblock0_1 rootfstype=squashfs";
++	};
++};
++
++&rootfs_part1 {
++	reg = <0x0 0x8000000>;
++};
++
++/delete-node/ &rootfs_part2;
+diff --git a/target/linux/ipq40xx/files-4.14/arch/arm/boot/dts/qcom-ipq4019-p2w-r619ac.dts b/target/linux/ipq40xx/files-4.14/arch/arm/boot/dts/qcom-ipq4019-p2w-r619ac.dts
+new file mode 100644
+index 0000000000..31010dd179
+--- /dev/null
++++ b/target/linux/ipq40xx/files-4.14/arch/arm/boot/dts/qcom-ipq4019-p2w-r619ac.dts
+@@ -0,0 +1,12 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++
++#include "qcom-ipq4019-r619ac.dtsi"
++
++/ {
++	model = "P&W R619AC";
++	compatible = "p2w,r619ac";
++
++	chosen {
++		bootargs-append = " root=/dev/ubiblock0_1 rootfstype=squashfs";
++	};
++};
+diff --git a/target/linux/ipq40xx/files-4.14/arch/arm/boot/dts/qcom-ipq4019-r619ac.dtsi b/target/linux/ipq40xx/files-4.14/arch/arm/boot/dts/qcom-ipq4019-r619ac.dtsi
+new file mode 100644
+index 0000000000..26d61b5886
+--- /dev/null
++++ b/target/linux/ipq40xx/files-4.14/arch/arm/boot/dts/qcom-ipq4019-r619ac.dtsi
+@@ -0,0 +1,311 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++
++#include "qcom-ipq4019.dtsi"
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/soc/qcom,tcsr.h>
++
++/ {
++	aliases {
++		led-boot = &led_sys;
++		led-failsafe = &led_sys;
++		led-running = &led_sys;
++		led-upgrade = &led_sys;
++		label-mac-device = &gmac0;
++	};
++
++	soc {
++		rng@22000 {
++			status = "okay";
++		};
++
++		mdio@90000 {
++			status = "okay";
++			pinctrl-0 = <&mdio_pins>;
++			pinctrl-names = "default";
++		};
++
++		ess-psgmii@98000 {
++			status = "okay";
++		};
++
++		tcsr@1949000 {
++			compatible = "qcom,tcsr";
++			reg = <0x1949000 0x100>;
++			qcom,wifi_glb_cfg = <TCSR_WIFI_GLB_CFG>;
++		};
++
++		tcsr@194b000 {
++			compatible = "qcom,tcsr";
++			reg = <0x194b000 0x100>;
++			qcom,usb-hsphy-mode-select = <TCSR_USB_HSPHY_HOST_MODE>;
++		};
++
++		ess_tcsr@1953000 {
++			compatible = "qcom,tcsr";
++			reg = <0x1953000 0x1000>;
++			qcom,ess-interface-select = <TCSR_ESS_PSGMII>;
++		};
++
++		tcsr@1957000 {
++			compatible = "qcom,tcsr";
++			reg = <0x1957000 0x100>;
++			qcom,wifi_noc_memtype_m0_m2 = <TCSR_WIFI_NOC_MEMTYPE_M0_M2>;
++		};
++
++		usb2@60f8800 {
++			status = "okay";
++		};
++
++		usb3@8af8800 {
++			status = "okay";
++		};
++
++		crypto@8e3a000 {
++			status = "okay";
++		};
++
++		watchdog@b017000 {
++			status = "okay";
++		};
++
++		ess-switch@c000000 {
++			status = "okay";
++		};
++
++		edma@c080000 {
++			status = "okay";
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-0 = <&led_pins>;
++		pinctrl-names = "default";
++
++		led_sys: sys {
++			label = "r619ac:blue:sys";
++			gpios = <&tlmm 39 GPIO_ACTIVE_HIGH>;
++		};
++
++		wlan2g {
++			label = "r619ac:blue:wlan2g";
++			gpios = <&tlmm 32 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "phy0tpt";
++		};
++
++		wlan5g {
++			label = "r619ac:blue:wlan5g";
++			gpios = <&tlmm 50 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "phy1tpt";
++		};
++	};
++
++	keys {
++		compatible = "gpio-keys";
++
++		reset {
++			label = "reset";
++			gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_RESTART>;
++		};
++	};
++};
++
++&blsp_dma {
++	status = "okay";
++};
++
++&blsp1_spi1 {
++	status = "okay";
++
++	flash@0 {
++		reg = <0>;
++		compatible = "jedec,spi-nor";
++		spi-max-frequency = <24000000>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "SBL1";
++				reg = <0x0 0x40000>;
++				read-only;
++			};
++
++			partition@40000 {
++				label = "MIBIB";
++				reg = <0x40000 0x20000>;
++				read-only;
++			};
++
++			partition@60000 {
++				label = "QSEE";
++				reg = <0x60000 0x60000>;
++				read-only;
++			};
++
++			partition@c0000 {
++				label = "CDT";
++				reg = <0xc0000 0x10000>;
++				read-only;
++			};
++
++			partition@d0000 {
++				label = "DDRPARAMS";
++				reg = <0xd0000 0x10000>;
++				read-only;
++			};
++
++			partition@e0000 {
++				label = "APPSBLENV";
++				reg = <0xe0000 0x10000>;
++				read-only;
++			};
++
++			partition@f0000 {
++				label = "APPSBL";
++				reg = <0xf0000 0x80000>;
++				read-only;
++			};
++
++			partition@1 {
++				label = "Bootloader";
++				reg = <0x0 0x170000>;
++				read-only;
++			};
++
++			partition@170000 {
++				label = "ART";
++				reg = <0x170000 0x10000>;
++				read-only;
++			};
++
++			partition@180000 {
++				label = "unused";
++				reg = <0x180000 0xe80000>;
++			};
++		};
++	};
++};
++
++&blsp1_uart1 {
++	pinctrl-0 = <&serial_0_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
++&cryptobam {
++	status = "okay";
++};
++
++&nand {
++	status = "okay";
++
++	nand@0 {
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			rootfs_part1: partition@0 {
++				label = "rootfs";
++				reg = <0x0 0x4000000>;
++			};
++
++			rootfs_part2: partition@4000000 {
++				label = "unused1";
++				reg = <0x4000000 0x4000000>;
++			};
++		};
++	};
++};
++
++&qpic_bam {
++	status = "okay";
++};
++
++&tlmm {
++	mdio_pins: mdio_pinmux {
++		mux_1 {
++			pins = "gpio6";
++			function = "mdio";
++			bias-pull-up;
++		};
++
++		mux_2 {
++			pins = "gpio7";
++			function = "mdc";
++			bias-pull-up;
++		};
++	};
++
++	sd_0_pins: sd_0_pinmux {
++		mux_1 {
++			pins = "gpio23", "gpio24", "gpio25", "gpio26", "gpio28";
++			function = "sdio";
++			drive-strength = <10>;
++		};
++
++		mux_2 {
++			pins = "gpio27";
++			function = "sdio";
++			drive-strength = <16>;
++		};
++	};
++
++	serial_0_pins: serial0-pinmux {
++		mux {
++			pins = "gpio16", "gpio17";
++			function = "blsp_uart0";
++			bias-disable;
++		};
++	};
++
++	led_pins: led_pinmux {
++		mux {
++			pins = "gpio32", "gpio39", "gpio50";
++			function = "gpio";
++			bias-pull-up;
++			output-low;
++		};
++
++		mux_1 {
++			pins = "gpio52";
++			function = "gpio";
++			bias-pull-up;
++			output-high;
++		};
++
++		mux_2 {
++			pins = "gpio61";
++			function = "gpio";
++			bias-pull-down;
++			output-high;
++		};
++	};
++};
++
++&usb3_ss_phy {
++	status = "okay";
++};
++
++&usb3_hs_phy {
++	status = "okay";
++};
++
++&usb2_hs_phy {
++	status = "okay";
++};
++
++&wifi0 {
++	status = "okay";
++	qcom,ath10k-calibration-variant = "R619AC";
++};
++
++&wifi1 {
++	status = "okay";
++	qcom,ath10k-calibration-variant = "R619AC";
++};
+diff --git a/target/linux/ipq40xx/image/Makefile b/target/linux/ipq40xx/image/Makefile
+index 98c81726d9..d432a35ec5 100644
+--- a/target/linux/ipq40xx/image/Makefile
++++ b/target/linux/ipq40xx/image/Makefile
+@@ -362,6 +362,37 @@ define Device/qcom_ap-dk04.1-c1
+ endef
+ TARGET_DEVICES += qcom_ap-dk04.1-c1
+ 
++define Device/p2w_r619ac
++	$(call Device/FitzImage)
++	$(call Device/UbiFit)
++	DEVICE_VENDOR := P&W
++	DEVICE_MODEL := R619AC
++	DEVICE_TITLE := P&W R619AC
++	DEVICE_DTS := qcom-ipq4019-p2w-r619ac
++	DEVICE_DTS_CONFIG := config@10
++	BLOCKSIZE := 128k
++	PAGESIZE := 2048
++	IMAGES += nand-factory.bin
++	IMAGE/nand-factory.bin := append-ubi | qsdk-ipq-factory-nand
++	DEVICE_PACKAGES := ipq-wifi-p2w_r619ac -kmod-ath10k-ct -ath10k-firmware-qca4019-ct kmod-ath10k ath10k-firmware-qca4019
++endef
++TARGET_DEVICES += p2w_r619ac
++
++define Device/p2w_r619ac-128m
++	$(call Device/FitzImage)
++	$(call Device/UbiFit)
++	DEVICE_VENDOR := P&W
++	DEVICE_MODEL := R619AC
++	DEVICE_VARIANT := 128M
++	DEVICE_TITLE := P&W R619AC (128M)
++	DEVICE_DTS := qcom-ipq4019-p2w-r619ac-128m
++	DEVICE_DTS_CONFIG := config@10
++	BLOCKSIZE := 128k
++	PAGESIZE := 2048
++	DEVICE_PACKAGES := ipq-wifi-p2w_r619ac -kmod-ath10k-ct -ath10k-firmware-qca4019-ct kmod-ath10k ath10k-firmware-qca4019
++endef
++TARGET_DEVICES += p2w_r619ac-128m
++
+ define Device/qxwlan_e2600ac-c1
+ 	$(call Device/FitImage)
+ 	DEVICE_TITLE :=  Qxwlan E2600AC-C1 (nor flash)
+diff --git a/target/linux/ipq40xx/patches-4.14/901-arm-boot-add-dts-files.patch b/target/linux/ipq40xx/patches-4.14/901-arm-boot-add-dts-files.patch
+index f7efd415f1..871fd96ee8 100644
+--- a/target/linux/ipq40xx/patches-4.14/901-arm-boot-add-dts-files.patch
++++ b/target/linux/ipq40xx/patches-4.14/901-arm-boot-add-dts-files.patch
+@@ -10,7 +10,7 @@ Signed-off-by: John Crispin <john@phrozen.org>
+ 
+ --- a/arch/arm/boot/dts/Makefile
+ +++ b/arch/arm/boot/dts/Makefile
+-@@ -697,7 +697,31 @@ dtb-$(CONFIG_ARCH_QCOM) += \
++@@ -697,7 +697,33 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+  	qcom-apq8074-dragonboard.dtb \
+  	qcom-apq8084-ifc6540.dtb \
+  	qcom-apq8084-mtp.dtb \
+@@ -34,6 +34,8 @@ Signed-off-by: John Crispin <john@phrozen.org>
+ +	qcom-ipq4019-fritzrepeater-3000.dtb \
+ +	qcom-ipq4019-linksys_ea8300.dtb \
+ +	qcom-ipq4019-map-ac2200.dtb \
+++	qcom-ipq4019-p2w-r619ac.dtb \
+++	qcom-ipq4019-p2w-r619ac-128m.dtb \
+ +	qcom-ipq4019-qxwlan-e2600ac-c1.dtb \
+ +	qcom-ipq4019-qxwlan-e2600ac-c2.dtb \
+ +	qcom-ipq4028-wpj428.dtb \
